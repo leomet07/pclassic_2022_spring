@@ -1,0 +1,33 @@
+cases = 1
+
+og = "tired of translating"
+
+translate_pairs = 3
+
+translation_pairs = [
+"tired scared",
+"of to",
+"translating fly"
+]
+
+# Solve
+
+og_words = og.split(" ")
+
+translation_map = {}
+for i in range(0, translate_pairs):
+	pair = (translation_pairs[i]).split(" ")
+
+	translation_map[pair[0]] = pair[1]
+
+print(og_words)
+print(translation_map)
+
+new_words = og_words.copy()
+
+for i in range(0, len(og_words)):
+	word = og_words[i]
+	if word in translation_map:
+		new_words[i] = translation_map[word]
+
+print(new_words)

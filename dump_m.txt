@@ -1,0 +1,85 @@
+# Step 1: Find Peaks
+
+
+test_cases =1
+
+# num_heights = 5
+# num_heights = 7
+
+# str_heights = "6 3 5 2 7".split()
+str_heights = "3 8 5 4 1 20 2".split()
+# str_heights = "2 5 3 7 1 2".split()
+
+heights = []
+for s in str_heights:
+	heights.append(int(s))
+
+print(heights)
+
+
+mountains = []
+
+heights_len = len(heights)
+for i in range(0, heights_len):
+	c = heights[i]
+	valid = True
+	
+	if (i != 0 and heights[i -1] > c):
+		valid = False
+		
+	if (i != heights_len - 1 and heights[i + 1] > c):
+		valid = False
+	
+	if (valid):
+		# print("Mountain found (with index:) ", i )
+		mountains.append(i)
+	# print( "Index: " , i, " Val: " , c )
+
+
+
+
+
+# diffs = []
+# for i in range(0, len(mountains) - 1):
+# 	diffs.append(abs(mountains[i] - mountains[i + 1]))
+
+# print("diffs: ", diffs)
+
+# # Edge cases
+# # First mountain to 'before' index aka zero
+# diffs.append( abs(int(mountains[0]) - 0) )
+
+# # Last mountain to last index
+# diffs.append( abs( int(mountains[-1]) - (len(heights) - 1) ))
+
+# print("diffs: ", diffs)
+# -----------------------------------------------
+# Edge Cases
+print("Mountains before: ", mountains)
+# if (mountains[0] != 1):
+# 	mountains.insert(0, 0)
+
+if (mountains[-1] != heights_len - 1):
+	mountains.append(heights_len - 1)
+
+
+print("Mountains after: ", mountains)
+
+mountains_val = {}
+for m in mountains:
+	mountains_val[heights[m]] = m
+
+
+smallest = min(mountains)
+largest  = max(mountains)
+# smallest = mountains_val[min(dict.keys(mountains_val))]
+# largest  = mountains_val[max(dict.keys(mountains_val))]
+
+print("Smallest: " , smallest, " Largest: ", largest, " Ass: ", dict.keys(mountains_val))
+
+diff = abs(largest - smallest) - 1
+
+if (mountains[0] != 0):
+	diff += abs(smallest - 0) - 1
+
+print(diff)
